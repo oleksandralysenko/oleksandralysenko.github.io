@@ -1,23 +1,20 @@
-import logo from './logo.svg';
 import './App.css';
+import Header from './components/header/Header';
+import { useEffect, React } from 'react';
+import 'rsuite/dist/rsuite.min.css';
 
-function App() {
+
+const App = () => {
+  // const authUser = JSON.parse(localStorage.getItem("authUser"));
+const admin = JSON.parse(localStorage.getItem("user"));
+console.log(admin?.user?.uid)
+useEffect(()=>{
+  localStorage.setItem("authUser", JSON.stringify({user: "Ihor"}))
+}, [])
+
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+    <div>
+    <Header/>
     </div>
   );
 }

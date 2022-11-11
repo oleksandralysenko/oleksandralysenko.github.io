@@ -1,0 +1,68 @@
+@import url('https://fonts.googleapis.com/css?family=Montserrat');
+
+.mainContainer{
+    display: flex;
+    flex-direction: row;
+    background-color: #FAE8EB;
+    /* width: 90%; */
+    margin: 50px;
+}
+
+.sideBar{
+    background-color: #B9CBC6;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    width: 35%;
+    padding: 20px;
+    position: relative;
+    left: 40px;
+}
+
+.infoContainer{
+    width: 100%;
+}
+
+.headerContainer{
+    background-color: #e4c2c6;
+    width:100%;
+    height: 250px;
+}
+
+.headerContainer h1{
+    text-align: center;
+    padding-top: 50px;
+    
+}
+.headerContainer h3{
+    text-align: center;
+    padding-top: 20px;
+    font-weight: lighter;
+}
+
+.photoContainer{
+margin-top: 20px;
+margin-bottom: 20px;
+}
+
+.photoContainer img {
+    width: 250px;
+    height: 250px;
+    border-radius: 50%;
+    border: 3px solid whitesmoke;
+}
+
+.contactContainer{
+    margin-top: 20px;
+}
+
+.eduContainer, .techSkillsContainer, .softSkillsContainer, .langContainer{
+    margin-left: 80px;
+    margin-top: 25px;
+}
+
+.eduContainer div{
+margin-bottom: 10px;
+margin-top: 10px;
+margin-left: 65px;
+}
