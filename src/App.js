@@ -1,7 +1,7 @@
 import './App.css';
-import Header from './components/header/Header';
 import { useEffect, React } from 'react';
 import 'rsuite/dist/rsuite.min.css';
+import Header from './components/header/HeaderRsuite.jsx';
 
 
 const App = () => {

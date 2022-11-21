@@ -59,7 +59,7 @@ const SignUpPage = ({ page }: Props) => {
       );
       localStorage.setItem("user", JSON.stringify(user));
       setSuccess(true);
-      setTimeout(() => navigate(AppRoutes.LOGIN), 3000)
+      setTimeout(() => navigate(AppRoutes.LOGIN), 1000)
       setFormValue({
         email: "",
         password: "",

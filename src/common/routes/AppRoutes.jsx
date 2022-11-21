@@ -1,17 +1,17 @@
 export const AppRoutes = {
-  MAIN_PAGE: "/",
-  NOT_FOUND: "/404",
-  LOGIN: "/signin",
-  SIGN_UP: "/signup",
+  MAIN_PAGE: "/main",
+  NOT_FOUND: "/*",
+  LOGIN: "/login",
+  SIGN_UP: "/signUp",
   CV: "/cv",
   ADMIN: "/admin",
 };
 
 export const RedirectRoutes = {
-  MAIN_PAGE: "/",
-  NOT_FOUND: "/404",
-  LOGIN: "/signin",
-  SIGN_UP: "/signup",
+  MAIN_PAGE: "/main",
+  NOT_FOUND: "/*",
+  LOGIN: "/login",
+  SIGN_UP: "/signUp",
   CV: "/cv",
   ADMIN: "/admin",
 };
