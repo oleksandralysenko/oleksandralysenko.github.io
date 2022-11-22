@@ -8,10 +8,10 @@ import HomeIcon from "@rsuite/icons/legacy/Home";
 
 import { AppRoutes, RedirectRoutes } from "../../common/routes/AppRoutes";
 import MainPage from "../../pages/main/MainPage.jsx";
-import LoginPage2 from "../../pages/login/LoginPage2.tsx";
-import SignUpPage from "../../pages/signup/SignUpPage.tsx";
+import LoginPage from "../../pages/login/LoginPage.tsx";
+import SignUpPage2 from "../../pages/signup/SignUpPage2.tsx";
 import s from "./Header.module.css";
-import NotFoundPage from "../../pages/404/NotFoundPage";
+import NotFoundPage from "../../pages/404/NotFoundPage.tsx";
 import AdminCV from "../../pages/CV/adminCv/AdminCV.tsx";
 // // import CV from "../../pages/CV/CV";
 
@@ -55,8 +55,8 @@ const Header = () => {
 
       <Routes>
         <Route path={RedirectRoutes.MAIN_PAGE} element={<MainPage />} />
-        <Route path={RedirectRoutes.LOGIN} element={<LoginPage2 />} />
-        <Route path={RedirectRoutes.SIGN_UP} element={<SignUpPage />} />
+        <Route path={RedirectRoutes.LOGIN} element={<LoginPage />} />
+        <Route path={RedirectRoutes.SIGN_UP} element={<SignUpPage2 />} />
         <Route path={RedirectRoutes.NOT_FOUND} element={<NotFoundPage />} />
         <Route path={RedirectRoutes.ADMIN} element={<AdminCV />} />
 

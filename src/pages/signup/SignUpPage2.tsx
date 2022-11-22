@@ -1,10 +1,15 @@
 import React, { ChangeEvent, useState } from "react";
-import s from "./LoginPage.module.css";
+import s from "./SignUpPage.module.css";
 import { useNavigate, Routes, Route } from "react-router-dom";
 import { AppRoutes } from "../../common/routes/AppRoutes";
-import AdminCV from "../CV/adminCv/AdminCV.tsx";
+// import AdminCV from "../CV/adminCv/AdminCV.tsx";
+import { EnterTypes } from "../../common/Types.tsx";
+import LoginPage from "../login/LoginPage.tsx";
 
-import { createUserWithEmailAndPassword } from "firebase/auth";
+import {
+  createUserWithEmailAndPassword,
+  signInWithEmailAndPassword,
+} from "firebase/auth";
 import { auth } from "../../Firebase";
 
 import {
@@ -17,9 +22,22 @@ import {
 } from "rsuite";
 
 
+interface Form {
+  name: string;
+  email: string;
+  password: string;
+}
+
+interface Props {
+  page: EnterTypes;
+}
+
+
 const { StringType, NumberType } = Schema.Types;
 
 const model = Schema.Model({
+  name: StringType()
+  .isRequired("This field is required."),
   email: StringType()
     .isEmail("Please enter a valid email address.")
     .isRequired("This field is required."),
@@ -36,13 +54,19 @@ const TextField = React.forwardRef((props, ref) => {
   );
 });
 
-const LoginPage = () => {
+const SignUpPage = ({ page }: Props) => {
+console.log(page);
+
   const formRef = React.useRef();
   const [formError, setFormError] = React.useState({});
   const [formValue, setFormValue] = React.useState({
+    // name: "",
     email: "",
     password: "",
   });
+
+  const [success, setSuccess] = useState<boolean>(false);
+  const navigate = useNavigate();
 
   const handleSubmit = () => {
     if (!formRef.current.check()) {
@@ -52,19 +76,24 @@ const LoginPage = () => {
     console.log(formValue, "Form Value");
   };
 
-  const navigate = useNavigate();
-  const [success, setSuccess] = useState<boolean>(false);
-
-  const handleLogin = async () => {
+  const handleSignUp = async () => {
     try {
       const user = await createUserWithEmailAndPassword(
         auth,
+        // formValue.name,
         formValue.email,
         formValue.password
       );
-      localStorage.setItem("user", JSON.stringify(user));
-      setSuccess(true);
-      setTimeout(() => navigate(AppRoutes.ADMIN), 1000);
+      setSuccess((prevState)=>!prevState);
+      setTimeout(() => {
+        setSuccess((prevState)=>!prevState)
+        setFormValue({
+          // name: "",
+          email: "",
+          password: "",
+        })
+      navigate(AppRoutes.LOGIN)
+    }, 1000);
     } catch (e) {
       console.log(e);
     } finally {
@@ -77,14 +106,15 @@ const LoginPage = () => {
         <>
           <FlexboxGrid>
             <FlexboxGrid.Item colspan={12}>
-              <Form
+              <Form 
                 ref={formRef}
                 onChange={setFormValue}
                 onCheck={setFormError}
                 formValue={formValue}
                 model={model}
               >
-                <TextField name="email" label="Email" />
+                {/* <TextField name="name" label="Name"/> */}
+                <TextField name="email" label="Email"/>
                 <TextField
                   name="password"
                   label="Password"
@@ -93,8 +123,8 @@ const LoginPage = () => {
                 />
 
                 <ButtonToolbar>
-                  <Button appearance="primary" onClick={handleLogin}>
-                    Submit
+                  <Button appearance="primary" onClick={handleSignUp}>
+                    Sign Up
                   </Button>
                 </ButtonToolbar>
               </Form>
@@ -106,7 +136,7 @@ const LoginPage = () => {
       )}
 
 <Routes>
-<Route path={AppRoutes.ADMIN} element={<AdminCV />} />
+<Route path={AppRoutes.LOGIN} element={<LoginPage />} />
 </Routes>
 
 
@@ -114,4 +144,4 @@ const LoginPage = () => {
   );
 };
 
-export default LoginPage;
+export default SignUpPage;
