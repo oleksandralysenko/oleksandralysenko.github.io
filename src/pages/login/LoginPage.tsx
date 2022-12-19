@@ -103,7 +103,8 @@ const LoginPage = () => {
         </>
       ) : (
         <h1>Success</h1>
-      )}
+      )
+      }
 
 <Routes>
 <Route path={AppRoutes.ADMIN} element={<AdminCV />} />

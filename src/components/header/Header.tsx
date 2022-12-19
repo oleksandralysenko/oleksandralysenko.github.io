@@ -13,6 +13,7 @@ import SignUpPage2 from "../../pages/signup/SignUpPage2.tsx";
 import s from "./Header.module.css";
 import NotFoundPage from "../../pages/404/NotFoundPage.tsx";
 import AdminCV from "../../pages/CV/adminCv/AdminCV.tsx";
+import CV from "../../pages/CV/CV";
 // // import CV from "../../pages/CV/CV";
 
 // const FaSvgIcon = ({ faIcon, ...rest }) => {
@@ -59,6 +60,7 @@ const Header = () => {
         <Route path={RedirectRoutes.SIGN_UP} element={<SignUpPage2 />} />
         <Route path={RedirectRoutes.NOT_FOUND} element={<NotFoundPage />} />
         <Route path={RedirectRoutes.ADMIN} element={<AdminCV />} />
+        <Route path={RedirectRoutes.CV} element={<CV />} />
 
       </Routes>
     </>

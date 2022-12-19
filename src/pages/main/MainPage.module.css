@@ -1,0 +1,35 @@
+/* import img from "../../common/assets/images/mainBg.JPG"; */
+
+/* .bgContainer{
+
+} */
+
+.bgImg{
+    /* min-height: 100%; */
+    height: 500px;
+    background-position: center;
+    background-size: cover;
+    background-image: url("../../common/assets/images/mainBg.JPG");
+    margin: 40px;
+    padding: 50px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+h2{
+    color: aliceblue;
+font-size: 75px;
+margin-top: 40px;
+margin-bottom: 50px;
+}
+
+.btn{
+    width: 100px;
+    height: 50px;
+    font-size: larger;
+    font-weight: bolder;
+    /* border: 1px solid gray; */
+    background-color: #e4c2c6;
+    ;
+}
