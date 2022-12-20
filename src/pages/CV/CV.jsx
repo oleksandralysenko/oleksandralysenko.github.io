@@ -1,8 +1,22 @@
 import React from "react";
 import s from "./CV.module.css";
 import img from "../../common/assets/images/img.JPG";
-import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-// import { icon } from '@fortawesome/fontawesome-svg-core/import.macro'
+import { Icon } from '@rsuite/icons';
+import * as faPhone from '@fortawesome/free-solid-svg-icons/faPhone';
+import * as faEnvelope from '@fortawesome/free-solid-svg-icons/faEnvelope';
+import * as faGithub from '@fortawesome/free-brands-svg-icons/faGithub';
+
+
+
+const FaSvgIcon = ({ faIcon, ...rest }) => {
+  const { width, height, svgPathData } = faIcon;
+  return (
+    <svg {...rest} viewBox={`0 0 ${width} ${height}`} width="2em" height="2em" fill="currentColor">
+      <path d={svgPathData}></path>
+    </svg>
+  );
+};
+
 
 const CV = () => {
   return (
@@ -14,7 +28,7 @@ const CV = () => {
           </div>
 
           <div>
-            <h4>About me</h4>
+          <h4>About me</h4>
             <p>
               Lorem ipsum dolor, sit amet consectetur adipisicing elit. Est ab
               aspernatur cumque, non, obcaecati modi maxime impedit consectetur
@@ -26,21 +40,22 @@ const CV = () => {
           <div className={s.contactContainer}>
             <h4>Contact me</h4>
             <div>
-              <span>Phone</span>
-              <FontAwesomeIcon icon="fa-solid fa-phone" />
-              <span>+3809000945</span>
+              <span><Icon as={FaSvgIcon} faIcon={faPhone} style={{color: "white"}}/></span>
+              <span
+              style={{ fontSize: "large",
+                color: "#575757"}}
+              >     +3809000945</span>
             </div>
 
             <div>
-              <span>Email</span>
-              <FontAwesomeIcon icon="fa-solid fa-envelope" />
-              <span> olysenko25@gmail.com</span>
+              <span><Icon as={FaSvgIcon} faIcon={faEnvelope} style={{color: "white"}}/></span>
+              <a href="mailto:olysenko25@gmail.com">      olysenko25@gmail.com</a>
             </div>
 
             <div>
-              <span> GitHub</span>
-              <FontAwesomeIcon icon="fa-solid fa-code-branch" />
-              <span> oleksandralysenko</span>
+              <span> <Icon as={FaSvgIcon} faIcon={faGithub} style={{color: "white"}}/></span>
+              <a href="https://github.com/oleksandralysenko" target="_blank" rel="noreferrer">      oleksandralysenko</a>
+              {/* <span> oleksandralysenko</span> */}
             </div>
           </div>
         </div>
@@ -54,16 +69,15 @@ const CV = () => {
         <div className={s.eduContainer}>
             <h4>Education</h4>
             <div>
-            <h6>Ivan Franko National University of Lviv</h6>
+            <h5>Ivan Franko National University of Lviv</h5>
             <p>Faculty of International Relations</p>
             <p>2015-2021</p>
             <p>Master in International Law and Translation</p>
             </div>
             <div>
-            <h6>Logos IT Academy</h6>
-            <p>Faculty of International Relations</p>
-            <p>2021-2022</p>
+            <h5>Logos IT Academy</h5>
             <p>Frontend Development</p>
+            <p>2021-2022</p>
             </div>
             </div>
           </div>

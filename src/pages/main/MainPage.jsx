@@ -15,6 +15,7 @@ const handleClick = ()=>navigate(RedirectRoutes.CV);
     <>
       <div className={s.bgImg}>
         <h2>Welcome!</h2>
+        <p>To see Sasha's CV press the button below.</p>
         <div>
         <Button 
         // size="lg"

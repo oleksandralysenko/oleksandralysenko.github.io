@@ -104,8 +104,9 @@ console.log(page);
     <>
       {!success ? (
         <>
-          <FlexboxGrid>
-            <FlexboxGrid.Item colspan={12}>
+          <FlexboxGrid justify="center" className={s.mainContainer}>
+            <FlexboxGrid.Item>
+            <Panel header={<h3>Sign up</h3>} bordered>
               <Form 
                 ref={formRef}
                 onChange={setFormValue}
@@ -122,12 +123,13 @@ console.log(page);
                   autoComplete="off"
                 />
 
-                <ButtonToolbar>
-                  <Button appearance="primary" onClick={handleSignUp}>
+                <ButtonToolbar className={s.btnContainer}>
+                  <Button className={s.btn} onClick={handleSignUp}>
                     Sign Up
                   </Button>
                 </ButtonToolbar>
               </Form>
+              </Panel>
             </FlexboxGrid.Item>
         </FlexboxGrid>
         </>

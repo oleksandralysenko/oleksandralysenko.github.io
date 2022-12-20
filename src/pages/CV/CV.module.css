@@ -56,17 +56,35 @@ margin-bottom: 20px;
     margin-top: 20px;
 }
 
+.contactContainer a{
+    font-size: large;
+     color: #575757;
+     text-decoration: none;
+}
+
+a:active, a:hover,  a:visited{
+    text-decoration: none;
+}
+
+a:hover{
+    color: aliceblue;
+}
+
 .eduContainer, .techSkillsContainer, .softSkillsContainer, .langContainer{
     margin-left: 80px;
     margin-top: 25px;
 }
-
+/* 
 .eduContainer div{
 margin-bottom: 10px;
 margin-top: 10px;
 margin-left: 65px;
-}
+} */
 
 .langContainer{
     margin-bottom: 50px;
+}
+
+h4{
+    text-decoration: underline;
 }

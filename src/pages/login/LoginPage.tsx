@@ -75,8 +75,10 @@ const LoginPage = () => {
     <>
       {!success ? (
         <>
-          <FlexboxGrid>
-            <FlexboxGrid.Item colspan={12}>
+        
+          <FlexboxGrid justify="center" className={s.mainContainer}>
+            <FlexboxGrid.Item>
+            <Panel header={<h3>Login</h3>} bordered>
               <Form 
                 ref={formRef}
                 onChange={setFormValue}
@@ -92,14 +94,17 @@ const LoginPage = () => {
                   autoComplete="off"
                 />
 
-                <ButtonToolbar>
-                  <Button appearance="primary" onClick={handleLogin}>
+                <ButtonToolbar className={s.btnContainer}>
+                  <Button onClick={handleLogin} className={s.btn}>
                     Log in
                   </Button>
                 </ButtonToolbar>
               </Form>
+              </Panel>
+
             </FlexboxGrid.Item>
         </FlexboxGrid>
+        
         </>
       ) : (
         <h1>Success</h1>

@@ -9,21 +9,13 @@ import HomeIcon from "@rsuite/icons/legacy/Home";
 import { AppRoutes, RedirectRoutes } from "../../common/routes/AppRoutes";
 import MainPage from "../../pages/main/MainPage.jsx";
 import LoginPage from "../../pages/login/LoginPage.tsx";
-import SignUpPage2 from "../../pages/signup/SignUpPage2.tsx";
+import SignUpPage2 from "../../pages/signup/SignUpPage.tsx";
 import s from "./Header.module.css";
 import NotFoundPage from "../../pages/404/NotFoundPage.tsx";
 import AdminCV from "../../pages/CV/adminCv/AdminCV.tsx";
 import CV from "../../pages/CV/CV";
-// // import CV from "../../pages/CV/CV";
 
-// const FaSvgIcon = ({ faIcon, ...rest }) => {
-//   const { width, height, svgPathData } = faIcon;
-//   return (
-//     <svg {...rest} viewBox={`0 0 ${width} ${height}`} width="2em" height="2em" fill="currentColor">
-//       <path d={svgPathData}></path>
-//     </svg>
-//   );
-// };
+const HomeIconnn = ({ size }) => <HomeIcon style={{ fontSize: size, marginRight: 10 }} />;
 
 const NavLink = React.forwardRef(({ href, children, ...rest }, ref) => (
   <Link ref={ref} to={href} {...rest}>
@@ -36,7 +28,7 @@ const Header = () => {
     <>
       <Navbar className={s.mainContainer}>
         <Nav>
-          <Nav.Item as={NavLink} href={AppRoutes.MAIN_PAGE} icon={<HomeIcon />}>
+          <Nav.Item as={NavLink} href={AppRoutes.MAIN_PAGE} icon={<HomeIconnn size="2em"/>}>
             Home
           </Nav.Item>
         </Nav>

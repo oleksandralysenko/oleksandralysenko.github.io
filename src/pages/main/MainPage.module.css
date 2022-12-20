@@ -25,11 +25,16 @@ margin-bottom: 50px;
 }
 
 .btn{
-    width: 100px;
+    width: 200px;
     height: 50px;
     font-size: larger;
     font-weight: bolder;
     /* border: 1px solid gray; */
     background-color: #e4c2c6;
     ;
+}
+
+.bgImg p{
+    font-size: large;
+    margin-bottom: 30px;
 }
