@@ -70,7 +70,7 @@ a:hover{
     color: aliceblue;
 }
 
-.eduContainer, .techSkillsContainer, .softSkillsContainer, .langContainer{
+.eduContainer, .techSkillsContainer, .softSkillsContainer, .langContainer, .hobbiesContainer{
     margin-left: 80px;
     margin-top: 25px;
 }
@@ -81,10 +81,12 @@ margin-top: 10px;
 margin-left: 65px;
 } */
 
-.langContainer{
+.langContainer, .hobbiesContainer{
     margin-bottom: 50px;
 }
 
 h4{
     text-decoration: underline;
 }
+
+

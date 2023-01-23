@@ -12,7 +12,7 @@ import LoginPage from "../../pages/login/LoginPage.tsx";
 import SignUpPage2 from "../../pages/signup/SignUpPage.tsx";
 import s from "./Header.module.css";
 import NotFoundPage from "../../pages/404/NotFoundPage.tsx";
-import AdminCV from "../../pages/CV/adminCv/AdminCV.tsx";
+import AdminCV from "../../pages/CV/adminCv/AdminCV";
 import CV from "../../pages/CV/CV";
 
 const HomeIconnn = ({ size }) => <HomeIcon style={{ fontSize: size, marginRight: 10 }} />;
@@ -47,12 +47,12 @@ const Header = () => {
       </Navbar>
 
       <Routes>
-        <Route path={RedirectRoutes.MAIN_PAGE} element={<MainPage />} />
-        <Route path={RedirectRoutes.LOGIN} element={<LoginPage />} />
-        <Route path={RedirectRoutes.SIGN_UP} element={<SignUpPage2 />} />
-        <Route path={RedirectRoutes.NOT_FOUND} element={<NotFoundPage />} />
-        <Route path={RedirectRoutes.ADMIN} element={<AdminCV />} />
-        <Route path={RedirectRoutes.CV} element={<CV />} />
+        <Route path={AppRoutes.MAIN_PAGE} element={<MainPage />} />
+        <Route path={AppRoutes.LOGIN} element={<LoginPage />} />
+        <Route path={AppRoutes.SIGN_UP} element={<SignUpPage2 />} />
+        <Route path={AppRoutes.NOT_FOUND} element={<NotFoundPage />} />
+        <Route path={AppRoutes.ADMIN} element={<AdminCV />} />
+        <Route path={AppRoutes.CV} element={<CV />} />
 
       </Routes>
     </>

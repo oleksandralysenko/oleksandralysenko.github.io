@@ -4,12 +4,12 @@ import s from "./MainPage.module.css";
 // import img from "../../common/assets/images/mainBg.JPG";
 import Button from 'rsuite/Button';
 import { Route, Routes, useNavigate } from "react-router-dom";
-import { RedirectRoutes } from "../../common/routes/AppRoutes";
+import { AppRoutes, RedirectRoutes } from "../../common/routes/AppRoutes";
 import CV from "../CV/CV";
 
 const MainPage = () => {
 const navigate = useNavigate();
-const handleClick = ()=>navigate(RedirectRoutes.CV);
+const handleClick = ()=>navigate(AppRoutes.CV);
 
   return (
     <>
@@ -26,10 +26,10 @@ const handleClick = ()=>navigate(RedirectRoutes.CV);
         </div>
        
 
-        <Forms />
+        {/* <Forms /> */}
       </div>
       <Routes>
-        <Route path={RedirectRoutes.CV} element={<CV/>}/>
+        <Route path={AppRoutes.CV} element={<CV/>}/>
       </Routes>
     </>
   );

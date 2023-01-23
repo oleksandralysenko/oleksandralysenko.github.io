@@ -2,8 +2,7 @@ import React, { ChangeEvent, useState } from "react";
 import s from "./LoginPage.module.css";
 import { useNavigate, Routes, Route } from "react-router-dom";
 import { AppRoutes } from "../../common/routes/AppRoutes";
-import AdminCV from "../CV/adminCv/AdminCV.tsx";
-
+import AdminCV from "../CV/adminCv/AdminCV";
 import { createUserWithEmailAndPassword, signInWithEmailAndPassword } from "firebase/auth";
 import { auth } from "../../Firebase";
 
@@ -15,7 +14,6 @@ import {
   Panel,
   FlexboxGrid,
 } from "rsuite";
-
 
 const { StringType, NumberType } = Schema.Types;
 
@@ -67,6 +65,7 @@ const LoginPage = () => {
       setTimeout(() => navigate(AppRoutes.ADMIN), 1000);
     } catch (e) {
       console.log(e);
+      navigate(AppRoutes.NOT_FOUND)
     } finally {
     }
   };

@@ -6,7 +6,7 @@ import { Icon } from "@rsuite/icons";
 import s from "./NotFoundPage.module.css";
 
 import Button from "rsuite/Button";
-import { RedirectRoutes } from "../../common/routes/AppRoutes";
+import { AppRoutes } from "../../common/routes/AppRoutes";
 import { useNavigate } from "react-router-dom";
 import React from "react";
 
@@ -27,7 +27,7 @@ const FaSvgIcon = ({ faIcon, ...rest }) => {
 
 const NotFoundPage = () => {
   const navigate = useNavigate();
-  const handleClick = () => navigate(RedirectRoutes.MAIN_PAGE);
+  const handleClick = () => navigate(AppRoutes.MAIN_PAGE);
   return (
     <>
       <div className={s.bgImg}>

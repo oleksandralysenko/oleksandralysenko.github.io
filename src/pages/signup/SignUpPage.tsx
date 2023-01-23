@@ -23,7 +23,8 @@ import {
 
 
 interface Form {
-  name: string;
+  firstname: string,
+  lastname: string,
   email: string;
   password: string;
 }
@@ -60,7 +61,8 @@ console.log(page);
   const formRef = React.useRef();
   const [formError, setFormError] = React.useState({});
   const [formValue, setFormValue] = React.useState({
-    // name: "",
+    firstname: "",
+    lastname: "",
     email: "",
     password: "",
   });
@@ -80,19 +82,21 @@ console.log(page);
     try {
       const user = await createUserWithEmailAndPassword(
         auth,
-        // formValue.name,
+        // formValue.firstname,
+        // formValue.lastname,
         formValue.email,
-        formValue.password
+        formValue.password,
       );
       setSuccess((prevState)=>!prevState);
       setTimeout(() => {
         setSuccess((prevState)=>!prevState)
         setFormValue({
-          // name: "",
+        //  firstname: "",
+        //  lastname: "",
           email: "",
           password: "",
         })
-      navigate(AppRoutes.LOGIN)
+      navigate(AppRoutes.MAIN_PAGE)
     }, 1000);
     } catch (e) {
       console.log(e);
@@ -114,7 +118,8 @@ console.log(page);
                 formValue={formValue}
                 model={model}
               >
-                {/* <TextField name="name" label="Name"/> */}
+                {/* <TextField name="firstname" label="First name"/> */}
+                {/* <TextField name="lastname" label="Last name"/> */}
                 <TextField name="email" label="Email"/>
                 <TextField
                   name="password"

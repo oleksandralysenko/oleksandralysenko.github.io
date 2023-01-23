@@ -82,31 +82,44 @@ const CV = () => {
             </div>
           </div>
           <div className={s.techSkillsContainer}>
-            <h4>Tech skills</h4>
+            <h4>Technical stack</h4>
             <ul>
-              <li></li>
-              <li></li>
-              <li></li>
-              <li></li>
-              <li></li>
-              <li></li>
+              <li>React</li>
+              <li>ECMAscript6</li>
+              <li>NodeJS</li>
+              <li>GIT version control</li>
+              <li>HTML/CSS</li>
+              <li>Agile/Scrum Metodology</li>
             </ul>
           </div>
           <div className={s.softSkillsContainer}>
             <h4>Soft skills</h4>
             <ul>
-              <li></li>
-              <li></li>
-              <li></li>
-              <li></li>
-              <li></li>
-              <li></li>
+              <li>Teamwork and communication</li>
+              <li>Client-aimed code writer</li>
+              <li>Fast learner</li>
+              <li>Problem solving and creativity</li>
+              <li>Time management</li>
+              <li>Creativity and willingness to learn</li>
             </ul>
           </div>
           <div className={s.langContainer}>
             <h4>Languages</h4>
             <p>English: C1 (Advanced) </p>
             <p>CAE certificate with the overall score 193</p>
+
+            <p>Italian: A2 (Pre-intermediate) </p>
+            <p>Erasmus+ exchange student at University of Foggia, Italy</p>
+
+          </div>
+          <div className={s.hobbiesContainer}>
+            <h4>Hobbies</h4>
+            <ul>
+              <li>Reading</li>
+              <li>Cooking</li>
+              <li>Psychology</li>
+              <li>Biology</li>
+            </ul>
 
           </div>
         </div>
