@@ -4,7 +4,7 @@ import { useNavigate, Routes, Route } from "react-router-dom";
 import { AppRoutes } from "../../common/routes/AppRoutes";
 // import AdminCV from "../CV/adminCv/AdminCV.tsx";
 import { EnterTypes } from "../../common/Types.tsx";
-import LoginPage from "../login/LoginPage.tsx";
+import LoginPage from "../login/LoginPage.jsx";
 
 import {
   createUserWithEmailAndPassword,
@@ -55,7 +55,7 @@ const TextField = React.forwardRef((props, ref) => {
   );
 });
 
-const SignUpPage = ({ page }: Props) => {
+const SignUpPage = ({ page }) => {
 console.log(page);
 
   const formRef = React.useRef();

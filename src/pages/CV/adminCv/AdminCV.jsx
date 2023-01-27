@@ -3,7 +3,7 @@ import ContactsComp from "../components/Contacts.jsx";
 import EducationComp from "../components/Education.jsx";
 import HobbiesComp from "../components/Hobbies.jsx";
 import LanguagesComp from "../components/Languages.jsx";
-import PersonalComp from "../components/PersonalInfo.tsx";
+import PersonalComp from "../components/PersonalInfo.jsx";
 import SoftSkillsComp from "../components/SoftSkills.jsx";
 import TechSkillsComp from "../components/TechSkills.jsx";
 

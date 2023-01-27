@@ -3,17 +3,15 @@ import { Link, Route, Routes } from "react-router-dom";
 import { Nav, Navbar } from "rsuite";
 import HomeIcon from "@rsuite/icons/legacy/Home";
 
-// import * as faAddressBook from '@fortawesome/free-regular-svg-icons/faAddressBook';
-// import { Icon } from '@rsuite/icons';
-
-import { AppRoutes, RedirectRoutes } from "../../common/routes/AppRoutes";
+import { AppRoutes } from "../../common/routes/AppRoutes";
 import MainPage from "../../pages/main/MainPage.jsx";
-import LoginPage from "../../pages/login/LoginPage.tsx";
-import SignUpPage2 from "../../pages/signup/SignUpPage.tsx";
+import LoginPage from "../../pages/login/LoginPage.jsx";
+import SignUpPage from "../../pages/signup/SignUpPage.tsx";
 import s from "./Header.module.css";
-import NotFoundPage from "../../pages/404/NotFoundPage.tsx";
+import NotFoundPage from "../../pages/404/NotFoundPage.jsx";
 import AdminCV from "../../pages/CV/adminCv/AdminCV";
 import CV from "../../pages/CV/CV";
+// import PrivateRoute from "../../common/hoc/PrivateRoute";
 
 const HomeIconnn = ({ size }) => <HomeIcon style={{ fontSize: size, marginRight: 10 }} />;
 
@@ -46,15 +44,15 @@ const Header = () => {
         </Nav>
       </Navbar>
 
-      <Routes>
+      {/* <Routes>
         <Route path={AppRoutes.MAIN_PAGE} element={<MainPage />} />
         <Route path={AppRoutes.LOGIN} element={<LoginPage />} />
-        <Route path={AppRoutes.SIGN_UP} element={<SignUpPage2 />} />
+        <Route path={AppRoutes.SIGN_UP} element={<SignUpPage />} />
         <Route path={AppRoutes.NOT_FOUND} element={<NotFoundPage />} />
         <Route path={AppRoutes.ADMIN} element={<AdminCV />} />
         <Route path={AppRoutes.CV} element={<CV />} />
 
-      </Routes>
+      </Routes> */}
     </>
   );
 };

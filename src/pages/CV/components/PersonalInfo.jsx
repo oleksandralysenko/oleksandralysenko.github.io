@@ -6,25 +6,47 @@ import CheckOutlineIcon from "@rsuite/icons/CheckOutline";
 import EditIcon from "@rsuite/icons/Edit";
 
 import AdminCV from "../adminCv/AdminCV";
-import db from "../../../Firebase.jsx";
-import { addDoc, collection } from "firebase/firestore";
+import { db, storage } from "../../../Firebase.jsx";
 
-interface InitialData {
-  firstname: string;
-  lastname: string;
-  position: string;
-}
+import {
+  ref,
+  getDownloadURL,
+  uploadBytesResumable,
+  deleteObject,
+} from "firebase/storage";
+
+import {
+  collection,
+  addDoc,
+  doc,
+  deleteDoc,
+  setDoc,
+  onSnapshot,
+} from "firebase/firestore";
+
+// import { useAppDispatch, useTypedSelector } from "../../../redux/store";
 
 const PersonalComp = () => {
-  const [formValues, setFormValues] = useState<InitialData>({
-    firstname: "",
-    lastname: "",
-    position: "",
-  });
+  // const [formValues, setFormValues] = useState({
+  //   firstname: "name",
+  //   lastname: "lastname",
+  //   position: "position",
+  // });
   const [edit, setEdit] = useState(false);
   const [firstname, setFirstName] = useState("name");
   const [lastname, setLastName] = useState("last name");
   const [position, setPosition] = useState("position");
+
+  // const handleInputChange = (key, value) => {
+  //   setFormValues({
+  //     ...formValues,
+  //     [key]: value,
+  //   });
+  // };
+
+  // const getInfo = () => {
+  //   onSnapshot()
+  // }
 
   // const handleSubmit = (e:any) => {
   //     e.preventDefault();
@@ -68,11 +90,12 @@ const PersonalComp = () => {
                   onChange={(value) => setPosition(value)}
                 />
                 <ButtonToolbar>
-                <IconButton
-                  size="md"
-                  icon={<CheckOutlineIcon />}
-                  onClick={() => setEdit((prevState) => !prevState)}
-                ></IconButton></ButtonToolbar>
+                  <IconButton
+                    size="md"
+                    icon={<CheckOutlineIcon />}
+                    onClick={() => setEdit((prevState) => !prevState)}
+                  ></IconButton>
+                </ButtonToolbar>
               </div>
             </>
           ) : (
@@ -90,7 +113,6 @@ const PersonalComp = () => {
           )}
         </div>
       </Form>
-    
     </>
   );
 };
