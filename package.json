@@ -1,7 +1,7 @@
 {
   "name": "final-project",
   "version": "0.1.0",
-  "homepage": "https://oleksandralysenko.github.io/oleksandralysenko.github.io",
+  "homepage": "https://oleksandralysenko.github.io",
   "private": true,
   "dependencies": {
     "@fortawesome/fontawesome-common-types": "^6.2.1",
