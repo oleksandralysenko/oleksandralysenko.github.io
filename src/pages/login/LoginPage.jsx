@@ -40,7 +40,9 @@ const TextField = React.forwardRef((props, ref) => {
 const LoginPage = () => {
   const formRef = React.useRef();
   const [formError, setFormError] = React.useState({});
-  const [formValue, setFormValue] = React.useState("email", "password");
+  const [formValue, setFormValue] = React.useState(
+    {email: "", 
+    password: ""});
   const navigate = useNavigate();
   const [success, setSuccess] = useState(false);
 
@@ -61,12 +63,12 @@ const LoginPage = () => {
       );
       localStorage.setItem(
         "user",
-        JSON.stringify({ user: "Sasha", role: "admin" })
+        JSON.stringify(user)
       );
       setSuccess(true);
       setTimeout(() => {
         setSuccess((prevState) => !prevState);
-        setFormValue("email", "password")
+        setFormValue({email: "", password: ""})
         navigate(AppRoutes.ADMIN)
       }, 1000);
     } catch (e) {

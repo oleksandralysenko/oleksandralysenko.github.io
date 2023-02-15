@@ -23,35 +23,42 @@ import {
   setDoc,
   onSnapshot,
 } from "firebase/firestore";
+import { useEffect } from "react";
 
 // import { useAppDispatch, useTypedSelector } from "../../../redux/store";
 
 const PersonalComp = () => {
-  // const [formValues, setFormValues] = useState({
-  //   firstname: "name",
-  //   lastname: "lastname",
-  //   position: "position",
-  // });
+  const [formValues, setFormValues] = useState({
+    firstname: "",
+    lastname: "",
+    position: "",
+  });
   const [edit, setEdit] = useState(false);
-  const [firstname, setFirstName] = useState("name");
-  const [lastname, setLastName] = useState("last name");
-  const [position, setPosition] = useState("position");
-
-  // const handleInputChange = (key, value) => {
-  //   setFormValues({
-  //     ...formValues,
-  //     [key]: value,
+  
+  const handleInputChange = (key, value) => {
+    setFormValues({
+      ...formValues,
+      [key]: value,
+    });
+  };
+  // const getInfo = () => {
+  //   onSnapshot(collectionRef, (snapshot) => {
+  //     const data = snapshot.docs.map((doc) => ({ ...doc.data(), id: doc.id }));
+  //     setUsers(snapshot.docs.map((doc) => ({ ...doc.data(), id: doc.id })));
+  //     dispatch(
+  //       getData(snapshot.docs.map((doc) => ({ ...doc.data(), id: doc.id })))
+  //     );
   //   });
   // };
 
-  // const getInfo = () => {
-  //   onSnapshot()
-  // }
+// const useEffect(()=> {
+//   getInfo();
+// }, [])
 
-  // const handleSubmit = (e:any) => {
-  //     e.preventDefault();
-  //     addInfo();
-  // }
+  const handleSubmit = (e) => {
+    e.preventDefault()
+      console.log(formValues)
+  }
 
   //     const addInfo = async () => {
   //         const collectionRef = collection(db, "users")
@@ -63,10 +70,21 @@ const PersonalComp = () => {
   //             console.log(e)
   //         }
   //     }
+
+// useEffect(()=>{
+//   setFormValues()
+//   console.log(formValues)
+// }, [])
+
+// useEffect(()=>{
+//   console.log(formValues)
+// }, [formValues])
+
+
   return (
     <>
       <Form
-      // onSubmit={handleSubmit}
+      onSubmit={handleSubmit}
       >
         <div>
           {edit ? (
@@ -74,20 +92,20 @@ const PersonalComp = () => {
               <div className={s.inputsContainer}>
                 <Input
                   placeholder="First name"
-                  value={firstname}
-                  onChange={(value) => setFirstName(value)}
+                  value={formValues.firstname}
+                  onChange={(e)=>handleInputChange("firstname", e.target.value)}
                 />
 
                 <Input
                   placeholder="Last name"
-                  value={lastname}
-                  onChange={(value) => setLastName(value)}
+                  value={formValues.lastname}
+                  onChange={(e)=>handleInputChange("lastname", e.target.value)}
                 />
 
                 <Input
                   placeholder="Position"
-                  value={position}
-                  onChange={(value) => setPosition(value)}
+                  value={formValues.position}
+                  onChange={(e)=>handleInputChange("position", e.target.value)}
                 />
                 <ButtonToolbar>
                   <IconButton
@@ -101,9 +119,9 @@ const PersonalComp = () => {
           ) : (
             <div className={s.headerContainer}>
               <h1>
-                {firstname} {lastname}
+                {formValues.firstname} {formValues.lastname}
               </h1>
-              <h3>{position}</h3>
+              <h3>{formValues.position}</h3>
               <IconButton
                 icon={<EditIcon />}
                 size="md"

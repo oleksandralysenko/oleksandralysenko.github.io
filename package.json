@@ -26,9 +26,9 @@
     "react-redux": "^8.0.5",
     "react-router-dom": "^6.4.2",
     "react-scripts": "5.0.1",
+    "redux": "^4.2.0",
     "redux-devtools-extension": "^2.13.9",
     "redux-thunk": "^2.4.2",
-    "redux": "^4.2.0",
     "rsuite": "^5.22.2",
     "web-vitals": "^2.1.4"
   },

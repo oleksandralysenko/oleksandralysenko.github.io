@@ -5,6 +5,10 @@ import EditIcon from "@rsuite/icons/Edit";
 import AddOutlineIcon from "@rsuite/icons/AddOutline";
 import CheckOutlineIcon from "@rsuite/icons/CheckOutline";
 import { Form, Input, Whisper, Tooltip, SelectPicker } from "rsuite";
+import { useEffect } from "react";
+
+import db from "../../../Firebase";
+import { addDoc, collection, onSnapshot, deleteDoc, doc } from "firebase/firestore";
 
 const data = [
   "Native",
@@ -17,6 +21,8 @@ const data = [
 ].map((item) => ({ label: item, value: item }));
 
 const LanguagesComp = () => {
+  const collectionRef = collection(db, "languages");
+
   const [formValues, setFormValues] = useState({
     language: "",
     level: "",
@@ -24,10 +30,70 @@ const LanguagesComp = () => {
   });
 
   const [edit, setEdit] = useState(false);
-  const [language, setLanguage] = useState("");
-  const [level, setLevel] = useState("");
-  const [description, setDescription] = useState("");
+  const [languages, setLanguages] = useState([]);
 
+  // ([
+  //   {
+  //     language: "English",
+  //     level: "C1",
+  //     description: "ddd",
+  //   },
+  //   {
+  //     language: "German",
+  //     level: "B1",
+  //     description: "sss",
+  //   },
+  // ]);
+  
+  useEffect(() => console.log(formValues), [formValues]);
+  useEffect(() => console.log(languages), [languages]);
+
+  const setState = (key, value, callback) => {
+    callback((prevState) => {
+      return {
+        ...prevState,
+        [key]: value,
+      };
+    });
+  };
+
+  const addInfo = async () => {
+    try {
+      const docRef = await addDoc(collectionRef, formValues);
+      console.log(docRef);
+    } catch (e) {
+      console.log(e);
+    }
+  };
+
+  const getInfo = () => {
+    onSnapshot(collectionRef, (snapshot) => {
+      console.log(snapshot);
+      setLanguages(snapshot.docs.map((doc) => ({ ...doc.data(), id: doc.id })));
+    });
+  };
+
+const deleteLanguage = async(langId) => {
+  const docRef = doc(db, "languages", langId)
+  try {await deleteDoc(docRef);
+  } catch (e) {
+    console.log(e)
+  }
+}
+
+  const handleSubmit = () => {
+    setLanguages((prevState) => [...prevState, ...[formValues]]);
+    setEdit((prevState) => !prevState);
+    addInfo();
+  };
+
+  useEffect(() => {
+    getInfo();
+  }, []);
+
+  useEffect(() => {
+    languages?.length > 0 && console.log(languages);
+  }, [languages]);
   return (
     <>
       <Form>
@@ -39,15 +105,17 @@ const LanguagesComp = () => {
                 <Input
                   style={{ width: "225px" }}
                   placeholder="Language"
-                  value={language}
-                  onChange={(value) => setLanguage(value)}
+                  value={formValues.language}
+                  onChange={(value) =>
+                    setState("language", value, setFormValues)
+                  }
                 />
 
                 <SelectPicker
                   placeholder="Level"
                   data={data}
                   style={{ width: 224 }}
-                  onChange={(value) => setLevel(value)}
+                  onChange={(value) => setState("level", value, setFormValues)}
                 />
 
                 <Whisper
@@ -57,8 +125,10 @@ const LanguagesComp = () => {
                   <Input
                     style={{ height: "50px", width: "225px" }}
                     placeholder="Description"
-                    value={description}
-                    onChange={(value) => setDescription(value)}
+                    value={formValues.description}
+                    onChange={(value) =>
+                      setState("description", value, setFormValues)
+                    }
                   />
                 </Whisper>
 
@@ -66,7 +136,7 @@ const LanguagesComp = () => {
                   <IconButton icon={<AddOutlineIcon />} />
                   <IconButton
                     icon={<CheckOutlineIcon />}
-                    onClick={() => setEdit((prevState) => !prevState)}
+                    onClick={handleSubmit}
                   />
                 </ButtonToolbar>
               </div>
@@ -75,20 +145,22 @@ const LanguagesComp = () => {
             <div className={s.langContainer}>
               <div className={s.btn}>
                 <h4>Languages</h4>
-                <IconButton
-                  icon={<EditIcon />}
-                  onClick={() => setEdit((prevState) => !prevState)}
-                />
-              </div>
-              <div>
-                <h5>
-                  {language}
-                  <p>{level}</p>
-                </h5>
-                <h6>{description}</h6>
+                <IconButton icon={<EditIcon />} onClick={handleSubmit} />
               </div>
             </div>
           )}
+
+          {languages?.length > 0 &&
+            languages?.map((item) => {
+              <div key={item.id}>
+                <h5>
+                  {item.language}
+                  <p>{item.level}</p>
+                </h5>
+                <h6>{item.description}</h6>
+                <button onClick={()=>deleteLanguage(item.id)}>Delete</button>
+              </div>;
+            })}
         </div>
       </Form>
     </>

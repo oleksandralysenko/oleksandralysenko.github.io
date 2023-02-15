@@ -2,7 +2,7 @@ import "./App.css";
 import { useEffect, React } from "react";
 import "rsuite/dist/rsuite.min.css";
 import Header from "./components/header/Header.tsx";
-import PrivateRoute from "./common/hoc/PrivateRoute";
+import {PrivateRoute} from "./common/hoc/PrivateRoute";
 import AdminCV from "./pages/CV/adminCv/AdminCV";
 import { AppRoutes } from "./common/routes/AppRoutes";
 import { Route, Routes } from "react-router-dom";
@@ -14,15 +14,15 @@ import LoginPage from "./pages/login/LoginPage";
 import SignUpPage from "./pages/signup/SignUpPage.tsx";
 
 const App = () => {
-  const user = JSON.parse(localStorage.getItem("user"));
-  console.log(user);
+  const admin = JSON.parse(localStorage.getItem("user"));
+  console.log(admin?.user?.uid);
 
-  useEffect(() => {
-    localStorage.setItem(
-      "user",
-      JSON.stringify({ user: "Sasha", role: "admin" })
-    );
-  }, []);
+  // useEffect(() => {
+  //   localStorage.setItem(
+  //     "user",
+  //     JSON.stringify({ user: "Sasha", role: "admin" })
+  //   );
+  // }, []);
 
   return (
     <div>
@@ -35,6 +35,10 @@ const App = () => {
         <Route path={AppRoutes.NOT_FOUND} element={<NotFoundPage />} />
         <Route path={AppRoutes.ADMIN} element={<AdminCV />} />
         <Route path={AppRoutes.CV} element={<CV />} />
+
+        {/* <Route path={AppRoutes.ADMIN} element={
+          <PrivateRoute Component={AdminCV} />
+        }/>  */}
 
         {/* {user.role === "admin" ? (
           <Route path={AppRoutes.ADMIN} element={<AdminCV />} />
