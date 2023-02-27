@@ -33,12 +33,12 @@ const App = () => {
         <Route path={AppRoutes.LOGIN} element={<LoginPage />} />
         <Route path={AppRoutes.SIGN_UP} element={<SignUpPage />} />
         <Route path={AppRoutes.NOT_FOUND} element={<NotFoundPage />} />
-        <Route path={AppRoutes.ADMIN} element={<AdminCV />} />
+        {/* <Route path={AppRoutes.ADMIN} element={<AdminCV />} /> */}
         <Route path={AppRoutes.CV} element={<CV />} />
 
-        {/* <Route path={AppRoutes.ADMIN} element={
+        <Route path={AppRoutes.ADMIN} element={
           <PrivateRoute Component={AdminCV} />
-        }/>  */}
+        }/> 
 
         {/* {user.role === "admin" ? (
           <Route path={AppRoutes.ADMIN} element={<AdminCV />} />

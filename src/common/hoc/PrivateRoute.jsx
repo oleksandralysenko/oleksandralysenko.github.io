@@ -1,6 +1,14 @@
 import { AppRoutes } from "../routes/AppRoutes";
 import { Navigate, Outlet } from "react-router-dom";
-import auth from "../../Firebase";
+
+export const PrivateRoute = ({Component, redirectPath = AppRoutes.LOGIN}) => {
+    const user = JSON.parse(localStorage.getItem("user"))
+    return user?.role === "admin"
+    ? <Component/>
+    : <Navigate to={redirectPath} />
+}
+
+
 
 // const PrivateRoute = ({
 //       isAllowed,
@@ -13,12 +21,6 @@ import auth from "../../Firebase";
 //     return children ? children : <Outlet />
 // };
 
-export const PrivateRoute = ({Component}) => {
-    const user = localStorage.getItem("auth")
-    return user?.uid
-    ? <Component/>
-    : <Navigate to={AppRoutes.NOT_FOUND} />
-}
 
 // export default PrivateRoute;
 

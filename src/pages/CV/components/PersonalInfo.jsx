@@ -2,90 +2,79 @@ import React from "react";
 import s from "../adminCv/AdminCV.module.css";
 import { useState } from "react";
 import { Button, Form, Input, IconButton, ButtonToolbar } from "rsuite";
-import CheckOutlineIcon from "@rsuite/icons/CheckOutline";
+import CheckIcon from '@rsuite/icons/Check';
 import EditIcon from "@rsuite/icons/Edit";
 
 import AdminCV from "../adminCv/AdminCV";
-import { db, storage } from "../../../Firebase.jsx";
+import db from "../../../Firebase";
 
 import {
-  ref,
-  getDownloadURL,
-  uploadBytesResumable,
-  deleteObject,
-} from "firebase/storage";
-
-import {
-  collection,
   addDoc,
-  doc,
-  deleteDoc,
-  setDoc,
+  collection,
   onSnapshot,
+  deleteDoc,
+  doc,
 } from "firebase/firestore";
 import { useEffect } from "react";
 
 // import { useAppDispatch, useTypedSelector } from "../../../redux/store";
 
 const PersonalComp = () => {
+  const collectionRef = collection(db, "personal");
+
   const [formValues, setFormValues] = useState({
     firstname: "",
     lastname: "",
     position: "",
   });
   const [edit, setEdit] = useState(false);
-  
-  const handleInputChange = (key, value) => {
-    setFormValues({
-      ...formValues,
-      [key]: value,
+  const [name, setName] = useState([]);
+  useEffect(() => console.log(formValues), [formValues]);
+  useEffect(() => console.log(name), [name]);
+
+  const setState = (key, value, callback) => {
+    callback((prevState) => {
+      return {
+        ...prevState,
+        [key]: value,
+      };
     });
   };
-  // const getInfo = () => {
-  //   onSnapshot(collectionRef, (snapshot) => {
-  //     const data = snapshot.docs.map((doc) => ({ ...doc.data(), id: doc.id }));
-  //     setUsers(snapshot.docs.map((doc) => ({ ...doc.data(), id: doc.id })));
-  //     dispatch(
-  //       getData(snapshot.docs.map((doc) => ({ ...doc.data(), id: doc.id })))
-  //     );
-  //   });
-  // };
 
-// const useEffect(()=> {
-//   getInfo();
-// }, [])
+  const addInfo = async () => {
+    try {
+      const docRef = await addDoc(collectionRef, formValues);
+      console.log(docRef);
+    } catch (e) {
+      console.log(e);
+    }
+  };
 
-  const handleSubmit = (e) => {
-    e.preventDefault()
-      console.log(formValues)
-  }
+  const getInfo = () => {
+    onSnapshot(collectionRef, (snapshot) => {
+      console.log(snapshot);
+      setName(snapshot.docs.map((doc) => ({ ...doc.data(), id: doc.id })));
+    });
+  };
 
-  //     const addInfo = async () => {
-  //         const collectionRef = collection(db, "users")
+  const handleSubmit = () => {
+    setName((prevState) => [...prevState, ...[formValues]]);
+    setEdit((prevState) => !prevState);
+    addInfo();
+  };
 
-  //         try{
-  //         const docRef = await addDoc(collectionRef, formValues)
-  //         console.log(docRef)
-  //         } catch(e){
-  //             console.log(e)
-  //         }
-  //     }
+  useEffect(() => {
+    getInfo();
+  }, []);
 
-// useEffect(()=>{
-//   setFormValues()
-//   console.log(formValues)
-// }, [])
-
-// useEffect(()=>{
-//   console.log(formValues)
-// }, [formValues])
+  useEffect(() => {
+    name?.length > 0 && console.log(name);
+  }, [name]);
 
 
   return (
     <>
-      <Form
-      onSubmit={handleSubmit}
-      >
+      <Form>
         <div>
           {edit ? (
             <>
@@ -93,24 +82,23 @@ const PersonalComp = () => {
                 <Input
                   placeholder="First name"
                   value={formValues.firstname}
-                  onChange={(e)=>handleInputChange("firstname", e.target.value)}
-                />
+                  onChange={(value)=>setState("firstname", value, setFormValues)}/>
 
                 <Input
                   placeholder="Last name"
                   value={formValues.lastname}
-                  onChange={(e)=>handleInputChange("lastname", e.target.value)}
+                  onChange={(value)=>setState("lastname", value, setFormValues)}
                 />
 
                 <Input
                   placeholder="Position"
                   value={formValues.position}
-                  onChange={(e)=>handleInputChange("position", e.target.value)}
+                  onChange={(value)=>setState("position", value, setFormValues)}
                 />
                 <ButtonToolbar>
                   <IconButton
                     size="md"
-                    icon={<CheckOutlineIcon />}
+                    icon={<CheckIcon />}
                     onClick={() => setEdit((prevState) => !prevState)}
                   ></IconButton>
                 </ButtonToolbar>

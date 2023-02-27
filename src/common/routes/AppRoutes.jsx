@@ -1,5 +1,5 @@
 export const AppRoutes = {
-  MAIN_PAGE: "/main",
+  MAIN_PAGE: "/",
   NOT_FOUND: "/*",
   LOGIN: "/login",
   SIGN_UP: "/signUp",

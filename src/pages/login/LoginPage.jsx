@@ -63,7 +63,7 @@ const LoginPage = () => {
       );
       localStorage.setItem(
         "user",
-        JSON.stringify(user)
+        JSON.stringify({user: "Sasha", role: "admin"})
       );
       setSuccess(true);
       setTimeout(() => {

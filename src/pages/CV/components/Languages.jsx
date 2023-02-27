@@ -2,13 +2,19 @@ import { React, useState } from "react";
 import s from "../adminCv/AdminCV.module.css";
 import { IconButton, ButtonToolbar } from "rsuite";
 import EditIcon from "@rsuite/icons/Edit";
-import AddOutlineIcon from "@rsuite/icons/AddOutline";
-import CheckOutlineIcon from "@rsuite/icons/CheckOutline";
 import { Form, Input, Whisper, Tooltip, SelectPicker } from "rsuite";
 import { useEffect } from "react";
+import CheckIcon from "@rsuite/icons/Check";
+import CloseIcon from "@rsuite/icons/Close";
 
 import db from "../../../Firebase";
-import { addDoc, collection, onSnapshot, deleteDoc, doc } from "firebase/firestore";
+import {
+  addDoc,
+  collection,
+  onSnapshot,
+  deleteDoc,
+  doc,
+} from "firebase/firestore";
 
 const data = [
   "Native",
@@ -32,19 +38,6 @@ const LanguagesComp = () => {
   const [edit, setEdit] = useState(false);
   const [languages, setLanguages] = useState([]);
 
-  // ([
-  //   {
-  //     language: "English",
-  //     level: "C1",
-  //     description: "ddd",
-  //   },
-  //   {
-  //     language: "German",
-  //     level: "B1",
-  //     description: "sss",
-  //   },
-  // ]);
-  
   useEffect(() => console.log(formValues), [formValues]);
   useEffect(() => console.log(languages), [languages]);
 
@@ -73,13 +66,14 @@ const LanguagesComp = () => {
     });
   };
 
-const deleteLanguage = async(langId) => {
-  const docRef = doc(db, "languages", langId)
-  try {await deleteDoc(docRef);
-  } catch (e) {
-    console.log(e)
-  }
-}
+  const deleteLanguage = async (langId) => {
+    const docRef = doc(db, "languages", langId);
+    try {
+      await deleteDoc(docRef);
+    } catch (e) {
+      console.log(e);
+    }
+  };
 
   const handleSubmit = () => {
     setLanguages((prevState) => [...prevState, ...[formValues]]);
@@ -133,11 +127,7 @@ const deleteLanguage = async(langId) => {
                 </Whisper>
 
                 <ButtonToolbar>
-                  <IconButton icon={<AddOutlineIcon />} />
-                  <IconButton
-                    icon={<CheckOutlineIcon />}
-                    onClick={handleSubmit}
-                  />
+                  <IconButton icon={<CheckIcon />} onClick={handleSubmit} />
                 </ButtonToolbar>
               </div>
             </>
@@ -151,16 +141,22 @@ const deleteLanguage = async(langId) => {
           )}
 
           {languages?.length > 0 &&
-            languages?.map((item) => {
-              <div key={item.id}>
-                <h5>
-                  {item.language}
-                  <p>{item.level}</p>
-                </h5>
-                <h6>{item.description}</h6>
-                <button onClick={()=>deleteLanguage(item.id)}>Delete</button>
-              </div>;
-            })}
+            languages?.map((item) => (
+              <div className={s.langContainer}>
+                <div key={item.id} className={s.langItem}>
+                  <h5>{item.language}</h5>
+                  <h6>{item.level}</h6>
+                  <p>{item.description}</p>
+                </div>
+                <div>
+                  <IconButton
+                    className={s.deleteBtn}
+                    icon={<CloseIcon />}
+                    onClick={() => deleteLanguage(item.id)}
+                  />
+                </div>
+              </div>
+            ))}
         </div>
       </Form>
     </>
